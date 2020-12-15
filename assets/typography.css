@@ -1,0 +1,15 @@
+body {
+    font-family: sans-serif;
+}
+p { width: 90%;
+    margin-left: auto;
+    margin-right: auto; }
+table { width: 90%;
+        margin-left: auto;
+        margin-right: auto; }
+
+.normalny {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto; 
+}
