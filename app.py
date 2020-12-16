@@ -165,7 +165,8 @@ app.layout = html.P(id = 'page_content', className = 'app_body', children = [
             html.Div(id = 'footer', children = [
                 html.Br(),
                 html.P("This software is suplemental to paper entitled 'Deep learning-based recalibration of CUETO and EORTC prediction tools for recurrence and progression in non-muscle-invasive bladder cancer.' by Jobczyk et al.", className = 'footertext'),
-                html.P("Created by Department of Biostatistics and Translational Medicine @ Medical University of Lodz. Software authors: Marcin Kaszkowiak, Konrad Stawiski (konrad@konsta.com.pl)", className = 'footertext')
+                html.P("Software authors: Marcin Kaszkowiak, Konrad Stawiski (konrad@konsta.com.pl).", className = 'footertext'),
+                html.P("Created by Department of Biostatistics and Translational Medicine @ Medical University of Lodz. | biostat.umed.pl", className = 'footertext')
             ])
         ]
     )
