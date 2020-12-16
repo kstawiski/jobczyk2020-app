@@ -1,15 +1,32 @@
 body {
     font-family: sans-serif;
 }
+
+#_dash-app-content
+{
+max-width: 1200px;
+margin: 0 auto;
+}
+
 p { width: 90%;
     margin-left: auto;
     margin-right: auto; }
-table { width: 90%;
+table { width: 70% !important;
         margin-left: auto;
-        margin-right: auto; }
+        margin-right: auto;
+        margin-left: 80px; }
 
 .normalny {
     width: 100%;
     margin-left: auto;
     margin-right: auto; 
 }
+
+.wykres {
+    height: 400px;
+}
+
+.footertext { width: 90%;
+    margin-left: 15px;
+    margin-right: auto;
+font-size: small; }

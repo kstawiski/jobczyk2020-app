@@ -35,7 +35,7 @@ app.layout = html.P(id = 'page_content', className = 'app_body', children = [
             dbc.Col(
                 [
                     html.Div(id = 'inputBar', children = [
-                        html.H4(children = '1. Input patient data.'),
+                        html.H4(children = 'Input patient data:'),
                         html.P("Please enter the values of following parameters: ", className = 'normalny'),
 
                         #gender
@@ -127,17 +127,13 @@ app.layout = html.P(id = 'page_content', className = 'app_body', children = [
                             value = 0
                         ),
 
-                        html.H5('Calculated clinical scores'),
+                        html.H5('Calculated clinical scores:'),
                         DataTable(
                             id = 'calculatedScores',
                             columns = [{'name' : i, 'id' : i} for i in ['EORTC P score', 'EORTC R score', 'CUETO P score', 'CUETO R score']]    
-                        ),
-
-                        html.H5('Survival probability per year'),
-                        DataTable(
-                            id = 'survivals',
-                            columns = [{'name' : i, 'id' : i} for i in ['time [years]', 'PFS (95CI)', 'RFS (95CI)']]
                         )
+
+                      
 
                         
                     ]),
@@ -148,14 +144,29 @@ app.layout = html.P(id = 'page_content', className = 'app_body', children = [
                 [
                     html.Div(id = 'resultsArea', children = [
 
-                        html.H4(children = 'Predictions'),
-                        dcc.Graph(id = 'figureOutput'),
+                        html.H4(children = 'Predictions:'),
+                        dcc.Graph(id = 'figureOutput', className = "wykres"),
 
                         
                         
-                    ])
+                    ]),
+                    html.H5('Survival probability per year'),
+                        DataTable(
+                            id = 'survivals',
+                            columns = [{'name' : i, 'id' : i} for i in ['time [years]', 'PFS (95CI)', 'RFS (95CI)']]
+                        )
                 ]
             )
+        ]
+    ),
+
+    dbc.Row(
+        [
+            html.Div(id = 'footer', children = [
+                html.Br(),
+                html.P("This software is suplemental to paper entitled 'Deep learning-based recalibration of CUETO and EORTC prediction tools for recurrence and progression in non-muscle-invasive bladder cancer.'. Software authors: Marcin Kaszkowiak, Konrad Stawiski (konrad@konsta.com.pl).", className = 'footertext'),
+                html.P("Created by Department of Biostatistics and Translational Medicine @ Medical University of Lodz.", className = 'footertext')
+            ])
         ]
     )
 ])
@@ -194,7 +205,7 @@ def createGraph(gender, age, t, grade, tumors, diam, cis, bcg) :
                 range = [0, 1]
             ),
             hovermode = 'x unified',
-            height = 700
+            height = 400
         )
     )
 
