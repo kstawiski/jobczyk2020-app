@@ -45,7 +45,7 @@ def calculateCUETO(gender, age, tumN, stage, conCis, grade) :
     prog = 0
 
     #gender
-    rec += (gender == 2) * 3
+    rec += (gender == 0) * 3
     prog += 0
 
     #age 
@@ -53,8 +53,8 @@ def calculateCUETO(gender, age, tumN, stage, conCis, grade) :
     prog += (age > 70) * 2
 
     #number of tumors 
-    rec += (tumN > 3) * 2
-    prog += (tumN > 3)
+    rec += tumN * 2
+    prog += tumN
 
     #stage 
     rec += 0
@@ -62,7 +62,7 @@ def calculateCUETO(gender, age, tumN, stage, conCis, grade) :
 
     #concurrent cis 
     rec += conCis * 2
-    prog += conCis * 2
+    prog += conCis
 
     #grade 
     rec += (grade == 2) + (grade == 3) * 3
@@ -75,16 +75,17 @@ def calculateEORTC(tumN, diam, recRate, stage, conCis, grade) :
     prog = 0
 
     #number of tumors
-    prog += (tumN >=2) * 3
-    rec += ((tumN >= 2) * 3) + ((tumN >= 8) * 3) 
+    prog += (tumN * 3)
+    rec += (tumN * 3)
 
     #tumor diameter
-    prog += (diam >= 3) * 3
-    rec += (diam >= 3) * 3 
+    prog += diam * 3
+    rec += diam * 3 
 
     #reccurence rate 
-    prog += (recRate != 0) * 2
-    rec += ((recRate != 0) + (recRate > 1)) * 2
+    #prog += (recRate != 0) * 2 assuming no prior reccurence 
+    #rec += ((recRate != 0) + (recRate > 1)) * 2
+
 
     # stage; assuming Ta = 0 and T1 = 1
     prog += stage * 4
