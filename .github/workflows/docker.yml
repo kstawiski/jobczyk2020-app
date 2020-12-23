@@ -1,45 +1,45 @@
-name: CI to Docker hub 
+name: Docker
 
 on:
-
   push:
+    # Publish `master` as Docker `latest` image.
+    branches:
+      - master
 
-    branches: [ master ]
+    # Publish `v1.2.3` tags as releases.
+    tags:
+      - v*
 
-  steps:
+  # Run tests for any PRs.
+  pull_request:
 
-      -
 
-        name: Login to DockerHub
+jobs:
+  # Run tests.
+  # See also https://docs.docker.com/docker-hub/builds/automated-testing/
+  build:
 
-        uses: docker/login-action@v1 
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
 
+    steps:
+      - uses: actions/checkout@v2
+        name: Check out code
+
+      - name: Clean
+        run: |
+            sudo swapoff -a
+            sudo rm -f /swapfile
+            sudo apt clean
+            sudo apt autoremove -y --purge
+            docker rmi $(docker image ls -aq)
+            df -h
+      - uses: mr-smithers-excellent/docker-build-push@v3
+        name: Build & push Docker image
         with:
-
+          image: kstawiski/jobczyk2020-app
+          tag: latest
+          registry: docker.io
+          dockerfile: Dockerfile.ci
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
-
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-
-      -
-
-        name: Build and push
-
-        id: docker_build
-
-        uses: docker/build-push-action@v2
-
-        with:
-
-          context: ./
-
-          file: ./Dockerfile
-
-          push: true
-
-          tags: bengotch/simplewhale:latest
-
-      -
-
-        name: Image digest
-
-        run: echo ${{ steps.docker_build.outputs.digest }}
