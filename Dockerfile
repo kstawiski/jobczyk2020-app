@@ -8,4 +8,4 @@ RUN cd jobczyk2020-app && pwd
 WORKDIR /jobczyk2020-app
 
 EXPOSE 8888
-CMD ["python3","app.py"]
+CMD ["python3","appMMC.py"]
