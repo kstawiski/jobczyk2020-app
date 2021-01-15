@@ -64,7 +64,7 @@ app.layout = html.P(id = 'page_content', className = 'app_body', children = [
                             id = 't',
                             options = [
                                 {'label' : 'Ta', 'value' : 0},
-                                {'label' : 'T1', 'value' : 1}
+                                {'label' : 'T1 or CIS', 'value' : 1}
                             ],
                             value = 0
                         ),
