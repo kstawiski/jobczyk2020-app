@@ -136,7 +136,7 @@ app.layout = html.P(id = 'page_content', className = 'app_body', children = [
                                 {'label' : 'BCG', 'value' : 1},
                                 {'label' : 'MMC (mitomycin)', 'value' : 2}
                             ],
-                            value = 0
+                            value = 1
                         ),
                         html.P("Note: using 'none' additional treatment in high-risk patient (e.g. T1 or G3) can provide biased results.", className = "footertext"),
 
