@@ -250,23 +250,21 @@ def createGraph(gender, age, t, grade, tumors, diam, cis, bcg, model) :
     if model == 0:
         varList = [gender, age, t, cis, grade, tumors, diam, bcg, eortcR, eortcP, cuetoR, cuetoP]
     
-        #run the models
-        pfsSet = generateHighRes(pfsMod.predict_survival(varList)[0], pfsMod.times)
         rfsSet = generateHighRes(rfsMod.predict_survival(varList)[0], rfsMod.times)
-
-        #create a figure
-        fig.add_trace(go.Scatter(x = pfsSet[0],y = pfsSet[1], name = 'PFS'))
         fig.add_trace(go.Scatter(x = rfsSet[0], y = rfsSet[1], name = 'RFS'))
+
+        if bcg != 0 or mmc != 0:
+            pfsSet = generateHighRes(pfsMod.predict_survival(varList)[0], pfsMod.times)
+            fig.add_trace(go.Scatter(x = pfsSet[0],y = pfsSet[1], name = 'PFS'))
     else:
         varList = [gender, age, t, cis, grade, tumors, diam, bcg, eortcR, eortcP, cuetoR, cuetoP, mmc]
         
-        #run the models
-        pfsSet = generateHighRes(pfsModMMC.predict_survival(varList)[0], pfsModMMC.times)
         rfsSet = generateHighRes(rfsModMMC.predict_survival(varList)[0], rfsModMMC.times)
-
-        #create a figure
-        fig.add_trace(go.Scatter(x = pfsSet[0],y = pfsSet[1], name = 'PFS'))
         fig.add_trace(go.Scatter(x = rfsSet[0], y = rfsSet[1], name = 'RFS'))
+
+        if bcg != 0 or mmc != 0:
+            pfsSet = generateHighRes(pfsModMMC.predict_survival(varList)[0], pfsModMMC.times)
+            fig.add_trace(go.Scatter(x = pfsSet[0],y = pfsSet[1], name = 'PFS'))
 
 
     return fig
@@ -331,20 +329,28 @@ def calculateSurvivals(gender, age, t, grade, tumors, diam, cis, bcg, model) :
         for i in range(1, 6) :
 
             #calculate PFS 
-            pfs = pfsMod.predict_survival(varList, t = i)[0]
+            if bcg == 0 and mmc == 0:
+                pfs = ["Biased, use RFS."]
+                rfs = rfsMod.predict_survival(varList, t = i)[0]
+                tmp = pd.Series(
+                [i, pfs, '{:.2f}%'.format(rfs * 100)],
+                index = ret.columns
+                )
+            else:
+                pfs = pfsMod.predict_survival(varList, t = i)[0]
+                rfs = rfsMod.predict_survival(varList, t = i)[0]
+                tmp = pd.Series(
+                [i, '{:.2f}%'.format(pfs * 100), '{:.2f}%'.format(rfs * 100)],
+                index = ret.columns
+                )
             #pfsL = pfsMod.predict_survival_lower(t = i)
             #pfsU = pfsMod.predict_survival_upper(t = i)
 
             #calcullate RFS
-            rfs = rfsMod.predict_survival(varList, t = i)[0]
+            
+            
             #rfsL = rfsMod.predict_survival_lower(t = i)
             #rfsU = rfsMod.predict_survival_upper(t = i)
-
-
-            tmp = pd.Series(
-                [i, '{:.2f}%'.format(pfs * 100), '{:.2f}%'.format(rfs * 100)],
-                index = ret.columns
-            )
 
             ret = ret.append(tmp, ignore_index = True)
 
@@ -358,20 +364,20 @@ def calculateSurvivals(gender, age, t, grade, tumors, diam, cis, bcg, model) :
         for i in range(1, 6) :
 
             #calculate PFS 
-            pfs = pfsModMMC.predict_survival(varList, t = i)[0]
-            #pfsL = pfsMod.predict_survival_lower(t = i)
-            #pfsU = pfsMod.predict_survival_upper(t = i)
-
-            #calcullate RFS
-            rfs = rfsModMMC.predict_survival(varList, t = i)[0]
-            #rfsL = rfsMod.predict_survival_lower(t = i)
-            #rfsU = rfsMod.predict_survival_upper(t = i)
-
-
-            tmp = pd.Series(
+            if bcg == 0 and mmc == 0:
+                pfs = ["Biased, use RFS."]
+                rfs = rfsModMMC.predict_survival(varList, t = i)[0]
+                tmp = pd.Series(
+                [i, pfs, '{:.2f}%'.format(rfs * 100)],
+                index = ret.columns
+                )
+            else:
+                pfs = pfsModMMC.predict_survival(varList, t = i)[0]
+                rfs = rfsModMMC.predict_survival(varList, t = i)[0]
+                tmp = pd.Series(
                 [i, '{:.2f}%'.format(pfs * 100), '{:.2f}%'.format(rfs * 100)],
                 index = ret.columns
-            )
+                )
 
             ret = ret.append(tmp, ignore_index = True)
 
