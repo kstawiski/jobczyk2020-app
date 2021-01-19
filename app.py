@@ -138,7 +138,7 @@ app.layout = html.P(id = 'page_content', className = 'app_body', children = [
                             ],
                             value = 1
                         ),
-                        html.P("Note: using 'none' additional treatment in high-risk patient (e.g. T1 or G3) can provide biased results.", className = "footertext"),
+                        html.P("Note: Using 'none' additional treatment in high-risk patient (e.g. T1 or G3) can provide biased results. We turned off the prediction of PFS if 'none' additional treatment is given; use RFS instead.", className = "footertext"),
 
                         html.H5('Calculated clinical scores:'),
                         DataTable(
