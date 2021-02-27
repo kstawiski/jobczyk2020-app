@@ -187,7 +187,7 @@ app.layout = html.P(id = 'page_content', className = 'app_body', children = [
                         
                         
                     ]),
-                    html.H5('Survival probability per year'),
+                    html.H5('Survival probability per year:'),
                         DataTable(
                             id = 'survivals',
                             columns = [{'name' : i, 'id' : i} for i in ['time [years]', 'PFS (95CI)', 'RFS (95CI)']]
