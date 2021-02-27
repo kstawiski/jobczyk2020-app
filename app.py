@@ -30,7 +30,20 @@ app = dash.Dash(__name__, external_stylesheets = external_stylesheets)
 
 app.layout = html.P(id = 'page_content', className = 'app_body', children = [
 
-    dbc.Row(),
+    dbc.Row(
+        [ dbc.Col([
+            html.H2(children = 'Deep learning-based recalibration of CUETO and EORTC prediction tools for recurrence and progression in non-muscle-invasive bladder cancer.'),
+            html.H4(children = "Abstract:"),
+            html.P("Background: Prediction of recurrence and progression in non-muscle-invasive bladder cancer (NMIBC) remains essential to bladder cancer care. Despite being the standard tools for decision making, the EORTC, EAU, and CUETO risk groups provide moderate performance in predicting recurrence-free (RFS) and progression-free (PFS) survival."),
+            html.P("Objective: Develop and externally validate a merged and recalibrated tool for personalized RFS and PFS prediction in patients with primary NMIBC. "),
+            html.P("Design, Setting, and Participants: In this retrospective combined cohort data-mining study, the training group consisted of 3570 patients with de novo diagnosed NMIBC from several European countries treated between 1996 and 2007. Tested predictors included: gender, age, T stage, histopathological grading, number of tumors, tumor diameter, EORTC and CUETO scores, and type of intravesical treatment. The developed models were externally validated in an independent cohort of 322 patients from Poland treated between 2005-2015. "),
+            html.P("Outcome Measurements and Statistical Analysis: Models were trained using our implementation of proprietary grid search of hyperparameters for Cox proportional hazards deep neural networks (deep learning; DeepSurv). The performance was assessed using Harrell's c-index."),
+            html.P("Results and Limitations: Deep-learning-based models, for only surgical and BCG-treated patients, achieved the c-indices of 0.650 for RFS (95%CI:0.649-0.650) and 0.878 for PFS (95%CI:0.873-0.874) in the training group. In the validation group, the c-indices were estimated at 0.651 for RFS (95%CI:0.648-0.654) and 0.881 for PFS (95%CI:0.878-0.885). After the inclusion of patients treated with mitomycin (MMC), the final neural networks achieved a c-index of 0.885 (95%CI:0.885-0.885) for PFS in the training group and 0.876 (95%CI:0.873-0.880) in the validation group. For RFS, the c-indices were 0.6415 (95%CI:0.6412-0.6417) and 0.660 (95%CI:0.657-0.664) for training and validation groups, respectively."),
+            html.P("Conclusion: Our new predictive models allow for personalized NMIBC management. They outperformed standard-of-care risk stratification tools and showed no evidence of overfitting.  "),
+            html.P("Patient summary: Using advanced artificial intelligence, we have created and validated the new tool to predict early-stage bladder cancer recurrence and progression. The application combines state-of-the-art scales, outperforms them, and is freely available online.")
+        ])]
+        
+    ),
 
     dbc.Row(
         [
