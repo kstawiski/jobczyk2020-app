@@ -41,6 +41,16 @@ def generateHighRes(risks, times, res = 0.001, maxTim = 5) :
 
 def calculateCUETO(gender, age, tumN, stage, conCis, grade) :
 
+    if grade == 0.5:
+        grade = 1 
+
+    if grade == 1.5:
+        grade = 2
+
+    if grade == 3.01:
+        grade = 3
+    
+    
     rec = 0
     prog = 0
 
@@ -71,6 +81,16 @@ def calculateCUETO(gender, age, tumN, stage, conCis, grade) :
     return [rec, prog]
 
 def calculateEORTC(tumN, diam, recRate, stage, conCis, grade) :
+    if grade == 0.5:
+        grade = 1 
+
+    if grade == 1.5:
+        grade = 2
+
+    if grade == 3.01:
+        grade = 3
+    
+    
     rec = 0
     prog = 0
 
