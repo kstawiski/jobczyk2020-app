@@ -93,7 +93,7 @@ app.layout = html.P(id = 'page_content', className = 'app_body', children = [
                                 {'label' : 'WHO 1973 Grade 3', 'value' : 3},
                                 {'label' : '(Estimated) WHO 2016 PUNLMP', 'value' : 0.5},
                                 {'label' : '(Estimated) WHO 2016 NILGC', 'value' : 1.5},
-                                {'label' : '(Estimated) WHO 2016 NIHGC', 'value' : 3}
+                                {'label' : '(Estimated) WHO 2016 NIHGC', 'value' : 3.01}
                             ],
                             value = 1
                         ),
