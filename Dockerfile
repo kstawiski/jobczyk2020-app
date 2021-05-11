@@ -9,5 +9,5 @@ COPY . /jobczyk2020-app
 RUN cd jobczyk2020-app && pwd
 WORKDIR /jobczyk2020-app
 
-EXPOSE 8888
+EXPOSE 80
 CMD ["python3","app.py"]
