@@ -404,4 +404,4 @@ def calculateSurvivals(gender, age, t, grade, tumors, diam, cis, bcg, model) :
     return ret.to_dict('records')
 
 if __name__ == '__main__':
-    app.run_server(debug = True, host = '0.0.0.0', port = 8888)
+    app.run_server(debug = True, host = '0.0.0.0', port = 80)
