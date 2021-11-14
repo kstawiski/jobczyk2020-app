@@ -1,4 +1,4 @@
-FROM continuumio/miniconda
+FROM continuumio/miniconda3
 
 RUN apt-get update && apt-get install -y build-essential
 RUN conda install -c anaconda python=3.6 pip gxx_linux-64
